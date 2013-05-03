@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="H:/PortableApps/Eclipse/project libraries/1.5-dev/craftbukkit-1.5.1-R0.3-20130418.060238-5.jar" sourcepath="H:/PortableApps/Eclipse/project libraries/1.5-dev/Bukkit-master/"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

@@ -1,0 +1,39 @@
+# Must use 4 spaces instead of tabs! Check every line!
+name: Emerald Teleport
+main: com.github.spy1134.emeraldteleport.Main
+version: 1.0
+commands:
+    setemerald:
+        description: Sets the emerald block you're standing on as a teleport location.
+        usage: /setemerald
+        permission: emeraldteleport.set
+        permission-message: You can't set emerald blocks!
+    saveemerald:
+        description: Saves emerald locations to disk.
+        usage: /saveemerald
+        permission: emeraldteleport.save
+        permission-message: You aren't allowed to save to disk!
+    loademerald:
+        description: Loads emerald locations from disk.
+        usage: /loademerald
+        permission: emeraldteleport.load
+        permission-message: You aren't allowed to load from disk!
+    clearemerald:
+        description: Clear emerald location list.
+        usage: /clearemerald
+permissions:
+    emeraldteleport.set:
+        description: Allows players to set new emerald teleportation blocks.
+        default: op
+    emeraldteleport.delete:
+        description: Allows players to delete emerald teleportation blocks.
+        default: op
+    emeraldteleport.use:
+        description: Allows players to use emerald teleportation blocks.
+        default: true
+    emeraldteleport.save:
+        description: Allows players to save locations to disk.
+        default: op
+    emeraldteleport.load:
+        description: Allows players to load locations from disk.
+        default: op
