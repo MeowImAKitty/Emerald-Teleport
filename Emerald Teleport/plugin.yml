@@ -1,7 +1,7 @@
 # Must use 4 spaces instead of tabs! Check every line!
 name: Emerald Teleport
 main: com.github.meowimakitty.emeraldteleport.Main
-version: 1.1
+version: 1.2
 commands:
     setemerald:
         description: Sets the emerald block you're standing on as a teleport location.
@@ -26,6 +26,11 @@ commands:
     clearemerald:
         description: Clear emerald location list.
         usage: /clearemerald
+    disableemeraldteleport:
+        description: Disable the plugin.
+        permission: emeraldteleport.disable
+        permission-message: You aren't allowed to disable the plugin!
+        usage: /disableemeraldteleport
 permissions:
     emeraldteleport.set:
         description: Allows players to set new emerald teleportation blocks.
@@ -44,4 +49,7 @@ permissions:
         default: op
     emeraldteleport.load:
         description: Allows players to load locations from disk.
+        default: op
+    emeraldteleport.disable:
+        description: Allows players to disable the plugin.
         default: op

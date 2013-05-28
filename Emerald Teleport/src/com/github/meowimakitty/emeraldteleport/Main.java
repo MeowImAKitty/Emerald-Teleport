@@ -386,7 +386,7 @@ public class Main extends JavaPlugin
 			}
 			else
 			{
-				sender.sendMessage(ChatColor.RED + "You don't have permission to do this! Go die in a hole!");
+				sender.sendMessage(ChatColor.RED + "You don't have permission to do this.");
 			}
 		}
 		
@@ -414,6 +414,25 @@ public class Main extends JavaPlugin
 				sender.sendMessage(ChatColor.GREEN + "Locations loaded!");
 			}
 		}
+		
+		// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ DISABLE PLUGIN COMMAND ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		// This command disables the plugin. There is no command to reenable it
+		// in this plugin since none of its code can be run when the plugin is disabled.
+		else if(cmd.getName().equalsIgnoreCase("disableemeraldteleport"))
+		{
+			if(sender.isOp())
+			{
+				sender.sendMessage(ChatColor.GREEN + "Disabling plugin...");
+				getServer().getPluginManager().disablePlugin(this);
+			}
+			else
+			{
+				sender.sendMessage(ChatColor.RED + "You do not have permission to do this!");
+				return true;
+			}
+		}
+		
+		// Return true if we haven't already.
 		return true;
 	}
 }
