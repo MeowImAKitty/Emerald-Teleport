@@ -1,4 +1,4 @@
-package com.github.spy1134.emeraldteleport;
+package com.github.meowimakitty.emeraldteleport;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -285,7 +285,7 @@ public class Main extends JavaPlugin
 		// Permission: emeraldteleport.set
 		if(cmd.getName().equalsIgnoreCase("setemerald"))
 		{
-			// If console...
+			// If command was sent from console...
 			if(player == null)
 			{
 				// Output an error message and return true so command usage is not displayed.
@@ -307,24 +307,74 @@ public class Main extends JavaPlugin
 				if(Main.isLocationInList(blockLocation))
 				{
 					// Output an error and return true since we handled the error message.
-					player.sendMessage(ChatColor.RED + "This block is already registered!");
+					player.sendMessage(ChatColor.RED + "This block is already a teleporter!");
 					return true;
 				}
 				
 				// Add the block to the list and output a confirmation message.
 				emeraldBlockLocations.add(blockLocation);
-				player.sendMessage(ChatColor.GREEN + "Block has been registered!");
+				player.sendMessage(ChatColor.GREEN + "Teleport block has been saved!");
+
 				// Debug text
 				// player.sendMessage(blockLocation.toString());
 				return true;
 			}
+			// If this is not an emerald block...
 			else
 			{
+				// Send an error message.
 				player.sendMessage(ChatColor.RED + "You must be standing on an emerald block!");
+				return true;
 			}
 		}
-		// Clear emerald block locations. Console and OP only for security.
-		// No permission. OP and console only.
+		
+		// ~~~~~~~~~~~~~~~~~~~~~~~ UNSET EMERALD COMMAND ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		// Permission: emeraldteleport.unset
+		else if(cmd.getName().equalsIgnoreCase("unsetemerald"))
+		{
+			// If command was sent from console...
+			if(player == null)
+			{
+				sender.sendMessage(ChatColor.RED + "You must be a player to use that command!");
+				return true;
+			}
+			
+			// Get the location beneath the player.
+			Location blockLocation = player.getLocation();
+			blockLocation.subtract(0, 1, 0);
+			// Round coordinates.
+			blockLocation = blockLocation.getBlock().getLocation();
+			
+			// If the block is an emerald block...
+			if(blockLocation.getBlock().getType() == Material.EMERALD_BLOCK)
+			{
+				// If the block is registered...
+				if(Main.isLocationInList(blockLocation))
+				{
+					// Remove the location from the list and send a confirmation message.
+					Main.removeLocationFromList(blockLocation);
+					player.sendMessage(ChatColor.GREEN + "Teleport block has been unset!");
+					return true;
+				}
+				// If the block is not registered as a teleporter...
+				else
+				{
+					// Send an error message.
+					player.sendMessage(ChatColor.RED + "This block is not a teleporter!");
+					return true;
+				}
+			}
+			// If this is not an emerald block...
+			else
+			{
+				// Send an error message.
+				player.sendMessage(ChatColor.RED + "You must be standing on an emerald block!");
+				return true;
+			}
+		}
+		
+		// ~~~~~~~~~~~~~~~~~~~~~~~ CLEAR EMERALD LIST COMMAND ~~~~~~~~~~~~~~~~~~~~~~~~
+		// Permission: OP only
 		else if(cmd.getName().equalsIgnoreCase("clearemerald"))
 		{
 			// If source is console or OP...
@@ -339,6 +389,8 @@ public class Main extends JavaPlugin
 				sender.sendMessage(ChatColor.RED + "You don't have permission to do this! Go die in a hole!");
 			}
 		}
+		
+		// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ LOAD/SAVE DATA COMMAND ~~~~~~~~~~~~~~~~~~~~~~~~
 		// Save/load block locations to/from disk.
 		// Permission: emeraldteleport.save/emeraldteleport.load
 		else if(cmd.getName().equalsIgnoreCase("saveemerald") || cmd.getName().equalsIgnoreCase("loademerald"))

@@ -1,4 +1,4 @@
-package com.github.spy1134.emeraldteleport;
+package com.github.meowimakitty.emeraldteleport;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Location;

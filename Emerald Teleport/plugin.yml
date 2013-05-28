@@ -1,13 +1,18 @@
 # Must use 4 spaces instead of tabs! Check every line!
 name: Emerald Teleport
-main: com.github.spy1134.emeraldteleport.Main
-version: 1.0
+main: com.github.meowimakitty.emeraldteleport.Main
+version: 1.1
 commands:
     setemerald:
         description: Sets the emerald block you're standing on as a teleport location.
         usage: /setemerald
         permission: emeraldteleport.set
         permission-message: You can't set emerald blocks!
+    unsetemerald:
+        description: Unsets the emerald block you're standing on.
+        usage: /unsetemerald
+        permission: emeraldteleport.unset
+        permission-message: You can't unset emerald blocks!
     saveemerald:
         description: Saves emerald locations to disk.
         usage: /saveemerald
@@ -24,6 +29,9 @@ commands:
 permissions:
     emeraldteleport.set:
         description: Allows players to set new emerald teleportation blocks.
+        default: op
+    emeraldteleport.unset:
+        description: Allows players to unset existing emerald teleportation blocks.
         default: op
     emeraldteleport.delete:
         description: Allows players to delete emerald teleportation blocks.
